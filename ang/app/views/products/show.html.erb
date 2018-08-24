@@ -1,0 +1,216 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "jquery.flexslider" %>
+  <%= stylesheet_link_tag  "flexslider" %>
+<% end %>
+
+<script>
+$(document).ready(function(){
+  // The slider being synced must be initialized first
+  $('#carousel').flexslider({
+    animation: "slide",
+    controlNav: false,
+    animationLoop: false,
+    slideshow: false,
+    itemWidth: 150,
+    itemMargin: 5,
+    asNavFor: '#slider',
+    maxItems: 4
+  });
+ 
+  $('#slider').flexslider({
+    animation: "fade",
+    controlNav: false,
+    animationLoop: false,
+    slideshow: false,
+    sync: "#carousel"
+  });
+
+  $('#related-product-carousel').flexslider({
+    animation: "slide",
+    animationLoop: false,
+    slideshow: false,
+    itemWidth: 100,
+    itemMargin: 5,
+    maxItems: 3
+  });
+});
+</script>
+
+<section class="single-page-title single-page-title-about">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h2>Product Detail</h2>
+      </div>
+      <div class="col-md-5 align-self-center">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+            <li class="breadcrumb-item"><%= link_to "Category", products_by_category_path("acer") %></li>
+            <li class="breadcrumb-item active" aria-current="page">Product Detail</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-content products-detail">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-9 product">
+        <div class="row">
+          <div class="col-md-12">
+            <h2><%= @product.name %></h2>
+            <div id="slider" class="flexslider">
+              <ul class="slides">
+                <% @product.product_images.each do |product_image| %>
+                  <li><%= image_tag product_image.image.url(:medium) %></li>
+                <% end %>
+                <%# <li>
+                  <img src="https://unsplash.imgix.net/photo-1426200830301-372615e4ac54?fit=crop&fm=jpg&h=1080&q=75&w=1900" />
+                </li>
+                <li>
+                  <img src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?fit=crop&fm=jpg&h=1080&q=75&w=1900" />
+                </li>
+                <li>
+                  <img src="https://ununsplash.imgix.net/photo-1421098518790-5a14be02b243?fit=crop&fm=jpg&h=1080&q=75&w=1900" />
+                </li>
+                <li>
+                  <img src="https://unsplash.imgix.net/photo-1423439793616-f2aa4356b37e?fit=crop&fm=jpg&h=1080&q=75&w=1900" />
+                </li> %>
+              </ul>
+            </div>
+
+            <div id="carousel" class="flexslider">
+              <ul class="slides">
+                <% @product.product_images.each do |product_image| %>
+                  <li><%= image_tag product_image.image.url(:thumb) %></li>
+                <% end %>
+                <%# <li>
+                  <img src="https://unsplash.imgix.net/photo-1426200830301-372615e4ac54?fit=crop&fm=jpg&h=1080&q=75&w=1900" />
+                </li>
+                <li>
+                  <img src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?fit=crop&fm=jpg&h=1080&q=75&w=1900" />
+                </li>
+                <li>
+                  <img src="https://ununsplash.imgix.net/photo-1421098518790-5a14be02b243?fit=crop&fm=jpg&h=1080&q=75&w=1900" />
+                </li>
+                <li>
+                  <img src="https://unsplash.imgix.net/photo-1423439793616-f2aa4356b37e?fit=crop&fm=jpg&h=1080&q=75&w=1900" />
+                </li> %>
+              </ul>
+            </div>
+
+            <div class="pd-desc">
+              <h3>Product Detail</h3>
+              <p class="text-medium-dark">
+                <%= @product.short_specification %>
+              </p>
+              <div class="row">
+                <div class="col-lg-8 col-md-7 col-sm-12 col-12 specification">
+                  <h3>Specification:</h3>
+                  <ul>
+                    <% @specifications.each do |specification| %>
+                      <%= raw("<li>#{specification}</li>") %>
+                    <% end %>
+                      <%# <li>256GB PCIe flash storage</li>
+                      <li>2.7 GHz dual-core Intel Core i5 processor</li>
+                      <li>Turbo Boost up to 3.1GHz</li>
+                      <li>Intel Iris Graphics 6100</li>
+                      <li>8GB memory (up from 4GB in 2013 model)</li>
+                      <li>10 hour battery life</li>
+                      <li>13.3" Retina Display</li>
+                      <li>Intect Box</li>
+                      <li>1 Year international warranty</li> %>
+                  </ul>
+                </div>
+                <div class="col-lg-4 col-md-5 col-sm-12 col-12 item-detail">
+                  <h3>Item Details:</h3>
+                  <ul>
+                    <% @details.each do |detail| %>
+                      <%= raw("<li>#{detail}</li>") %>
+                    <% end %>
+                      <%# <li>Condition :<span>New</span></li>
+                      <li>Brand :<span>Apple</span></li>
+                      <li>Color :<span>White</span></li>
+                      <li>Warranty :<span>1 Year</span></li> %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="related-product">
+              <h3>Related Product</h3>
+              <div id="related-product-carousel" class="flexslider">
+                <ul class="slides row">
+                  <% @related_products.each do |related_product| %>
+                  <li>
+                    <div class="col-md-12">
+                      <div class="pd-box tg-verifiedad">
+                        <figure>
+                          <%= raw(tag_value(related_product)) %>
+                          <%= link_to product_path(related_product.category.permalink, 
+                                                   related_product.brand.permalink, 
+                                                   related_product.permalink) do %>
+                            <%= image_tag related_product.image('thumb'), alt: "image description", class: "img-fluid" %>
+                          <% end %>
+                        </figure>
+                        <div class="pd-box-content">
+                          <div class="pd-box-title">
+                            <h4>
+                              <%= link_to related_product.name.titleize, 
+                                          product_path(related_product.category.permalink, 
+                                                       related_product.brand.permalink, 
+                                                       related_product.permalink) %>
+                            </h4>
+                          </div>
+                          <div class="pd-box-desc">
+                            <%= raw(simple_format(related_product.short_specification)) %>
+                          </div>
+                          <div class="pd-box-detail">
+                            <%= link_to "DETAIL", product_path(related_product.category.permalink, 
+                                                               related_product.brand.permalink, 
+                                                               related_product.permalink) %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-sm-none d-md-block col-md-4 col-lg-3 product-side-menu">
+        <%# <div class="col-md-4"> %>
+              <div class="pd-box tg-verifiedad">
+                <figure>
+                  <%= raw(tag_value(@product)) %>
+                  <%= link_to product_path('acer', '123') do %>
+                    <%= image_tag "img-01.jpg", alt: "image description", class: "img-fluid" %>
+                  <% end %>
+                </figure>
+                <div class="pd-box-content">
+                  <div class="pd-box-title">
+                    <h4><%= link_to "Ei pad pro for sale", product_path('acer', '123') %></h4>
+                  </div>
+                  <div class="pd-box-desc">
+                    Completely pontificate timely metrics rather than accurate growth strategies. 
+                    Seamlessly impact premium communities whereas real-time networks.
+                  </div>
+                  <div class="pd-box-detail">
+                    <%= link_to "DETAIL", product_path('acer', '123') %>
+                  </div>
+                </div>
+              </div>
+            <%# </div> %>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+

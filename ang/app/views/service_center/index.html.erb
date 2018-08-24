@@ -1,0 +1,77 @@
+<section class="single-page-title single-page-title-about">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h2>Service Center</h2>
+      </div>
+      <div class="col-md-5 align-self-center">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+            <li class="breadcrumb-item active" aria-current="page">Service Center</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-content service-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 service-center-side-menu">
+        <div class="accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+          <div class="card">
+            <div class="card-header service-center-side-menu-title" role="tab">Product Brands</div>
+          </div>
+          <% @brands.each_with_index do |brand, x| %>
+            <% active_default = x == 0 ? 'active' : '' %>
+            <div class="card">
+              <div class="card-header" role="tab">
+                <%= link_to "javascript:void(0)", class: "#{active_default}", 
+                            onclick: "change_service_center('#{brand.name.downcase}', this);" do %>
+                  <span><%= brand.name %></span>
+                  <%# belum jalan tanda panah nya %>
+                  <%# <i class="fa fa-angle-right rotate-icon pull-right"> %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-md-9 service-center-list">
+        <% @brands.each_with_index do |brand, x| %>
+          <% hide_elm = x == 0 ? '' : 'display:none;' %>
+          <div class="service-centers" style="<%= hide_elm %>" id="<%= brand.name.downcase %>-service-center">
+            <div class="row">
+              <div class="col-md-12">
+                <h2><%= brand.name %></h2>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <% brand.service_centers.each do |service_center| %>
+                <div class="col-xs-12 col-md-6 service-center">
+                  <h4><%= service_center.name %></h4>
+                  <div class="service-center-detail">
+                    <%= simple_format(service_center.detail) %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+    function change_service_center(brand_name, elm){
+      $(".card-header a").removeClass("active");
+      $(elm).addClass("active");
+      $(".service-centers").fadeOut(1).promise().done(function(){
+        $("#"+brand_name+"-service-center").fadeIn(500);
+      })
+    }
+</script>

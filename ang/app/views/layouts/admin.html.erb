@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <% if @meta_description.present? %>
+      <meta name="description" content="<%= @meta_description %>">
+    <% end %>
+    <meta name="author" content="">
+    <title><%= @meta_title ? @meta_title : ApplicationController::BRAND_NAME %></title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', 'style', 'admin' %>
+    <%= javascript_include_tag 'application' %>  <%= yield :javascript_includes %>
+    <%= yield :css_includes %>
+    <!--[if lt IE 9]>
+      <script src="/assets/html5shiv.js"></script>
+      <script src="/assets/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <% unless current_user.nil? %>
+      <section class="logged-user">
+        <div class="row">
+          <div class="col-12 user-info-bar">
+            <div class="row">
+              <div class="col-md-6 hidden-xs">&nbsp;</div>
+              <div class="col-md-6 hidden-xs" id="login-pan">
+                <%= raw welcome_text %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    <% end %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light <%= manage_menu %>">
+      <div class="container">
+        <%= link_to (image_tag "logo.png", class: "img-fluid"), root_path, class: "navbar-brand" %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <%= link_to root_path, class: "nav-link" do %>
+                <div class="col-sm-12 no-p-l-r">Home</div>
+              <% end %>
+            </li>
+            <li class="nav-item active">
+              <%= link_to admin_banners_path, class: "nav-link" do %>
+                <div class="col-sm-12 no-p-l-r">Banners</div>
+              <% end %>
+            </li>
+            <li class="nav-item active">
+              <%= link_to admin_brands_path, class: "nav-link" do %>
+                <div class="col-sm-12 no-p-l-r">Brands</div>
+              <% end %>
+            </li>
+            <li class="nav-item active">
+              <%= link_to admin_categories_path, class: "nav-link" do %>
+                <div class="col-sm-12 no-p-l-r">Categories</div>
+              <% end %>
+            </li>
+            <li class="nav-item active">
+              <%= link_to admin_products_path, class: "nav-link" do %>
+                <div class="col-sm-12 no-p-l-r">Products</div>
+              <% end %>
+            </li>
+            <li class="nav-item active">
+              <%= link_to admin_store_locations_path, class: "nav-link" do %>
+                <div class="col-sm-12 no-p-l-r">Store</div>
+              <% end %>
+            </li>
+            <li class="nav-item active">
+              <%= link_to "#", class: "nav-link" do %>
+                <div class="col-sm-12 no-p-l-r">Logout</div>
+              <% end %>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <%= yield %>
+
+    <footer class="footer">
+      <div class="footer-widget-section">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-sm-4 footer-block">
+                    <div class="footer-widget widget_text">
+                        <div class="footer-logo">
+                          <%= image_tag "small_logo.png", class: "img-fluid", style: "height: 50px;margin-bottom:50px;" %>
+                        </div>
+                        <p>Continually matrix cross functional opportunities whereas ethical information. Compellingly
+                            streamline enabled human capital before resource-leveling internal or "organic".</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 footer-block">
+                    <div class="footer-widget widget_text">
+                        <h3>We work for your profit</h3>
+                        <p>Distinctively expedite viral materials rather than out-of-the-box solutions. Credibly empower
+                            revolutionary ROI rather than unique products. Collaboratively maximize principle-centered
+                            ideas before highly efficient data. Phosfluorescently.</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 footer-block last">
+                    <div class="footer-widget widget_text">
+                        <h3>Contact Us Today</h3>
+                        <address>
+                            Call Us 666 777 888 OR 111 222 333<br>
+                            Send an Email on <a href="mailto:#">contact@domain.com</a><br>
+                            Visit Us 123 Fake Street- Blla 12358<br>
+                            Fake Kingdom<br>
+                        </address>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="copyright-section">
+        <div class="container clearfix">
+            <span class="copytext">&copy; Aneka Niaga Global. All rights reserved.</span>
+            <ul class="list-inline pull-right">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <!-- .container -->
+      </div>
+    </footer>
+    <div id="toTop"><i class="fa fa-angle-up"></i></div>
+  </body>
+</html>

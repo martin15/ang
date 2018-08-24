@@ -1,0 +1,53 @@
+<section class="single-page-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h2>Edit <%= @brand.name.titleize %> Service Center</h2>
+      </div>
+      <div class="col-md-5 align-self-center">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Admin", admin_path %></li>
+            <li class="breadcrumb-item"><%= link_to "Brands", admin_brands_path %></li>
+            <li class="breadcrumb-item active" aria-current="page">
+              <%= @brand.name.titleize %> Service Centers
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="admin-section-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 admin-service-center">
+        <%= render :partial => "shared/flash" %>
+        <p><%= link_to "Add new service center", admin_service_centers_path(@brand.id), class: "btn btn-dark mb-4" %></p>
+       
+        <%= simple_form_for [:admin, @service_center], wrapper: :horizontal_form , 
+                            url: admin_service_center_path(@brand.id, @service_center.id)do |f| %>
+          <%= render :partial => 'form', locals: {f: f}  %>
+        <% end %>
+
+        <div class="service-center-list">
+          <div class="row mb-3 mt-5">
+            <% @service_centers.each do |service_center| %>
+              <div class="col-xs-12 col-md-6 service-center">
+                <h4><%= service_center.name %></h4>
+                <div class="service-center-detail">
+                  <%= raw(simple_format(service_center.detail)) %>
+                </div>
+                <%= link_to "Edit", edit_admin_service_center_path(@brand.id, service_center.id), :class => "btn btn-success" %>
+                <%= link_to "Delete", admin_service_center_path(@brand.id, service_center.id), :method => :delete,
+                                      data: {:confirm => "Are you sure?"}, :class => "btn btn-danger" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

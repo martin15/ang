@@ -1,0 +1,74 @@
+<section class="single-page-title single-page-title-about">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h2>Products</h2>
+      </div>
+      <div class="col-md-5 align-self-center">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+            <li class="breadcrumb-item active" aria-current="page">Products</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-content products-by-categories">
+  <div class="container">
+      <%= render :partial => "shared/flash" %>
+    <div class="row">
+      <div class="col-md-3 product-side-menu">
+        <div class="accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+          <div class="card">
+            <div class="card-header product-side-menu-title" role="tab">Categories</div>
+          </div>
+          <% @categories.each do |category| %>
+            <% show = category.permalink == @category.permalink ? "show" : "" %>
+            <% collapsed = category.permalink == @category.permalink ? "" : "collapsed" %>
+            <div class="card">
+              <div class="card-header" role="tab" id="headingOne">
+                <a data-toggle="collapse" data-parent="#accordionEx" href="#<%= category.permalink %>" 
+                   aria-expanded="true" aria-controls="collapseOne" class="<%= collapsed %>">
+                  <span><%= category.name.titleize %></span> <i class="fa fa-angle-down rotate-icon pull-right"></i>
+                </a>
+              </div>
+
+              <div id="<%= category.permalink %>" class="collapse <%= show %>" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordionEx">
+                  <div class="card-body">
+                    <ul  class="my-fa-ul">
+                      <% category.brands.each do |brand| %>
+                        <% selected_brand = @brand.permalink == brand.permalink ? "hover" : "" %>
+                        <li><%= fa_icon "angle-double-right" %>
+                          <%= link_to brand.name.titleize, 
+                                      products_by_category_path(category.permalink, brand.permalink),
+                                      class: "#{selected_brand}" %>
+                        </li>
+                      <% end %>
+                    </ul>
+                  </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-md-9 product-list">
+        <div class="row">
+          <div class="col-md-12">
+            <h2><%= "#{@category.name.titleize} - #{@brand.name.titleize}" %></h2>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <%= render partial: "product_list", locals: { products: @products, category: @category, 
+                                                        brand: @brand } %>
+        </div>
+        <div class="col-xs-12 pagination justify-content-center"><%= paginate @products %></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

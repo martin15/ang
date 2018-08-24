@@ -1,0 +1,114 @@
+<section class="single-page-title single-page-title-about">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h2>Contact Us</h2>
+      </div>
+      <div class="col-md-5 align-self-center">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+            <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-content maps">
+  <div class="container">
+    <div class="row">
+      <div class=col-sm-12>
+        <div class="col-xs-12 map" id="googleMap" style="height: 600px;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-us-information">
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-4">
+        <div class="address">
+          <div class="address-icon"><%= fa_icon "map-marker" %></div>
+          <div class="info-detail">
+            <h3>Office Address</h3>
+            <div class="addr">
+              Jl. Jendral Ahmad Yani No.221 <br> 
+              Bandung, Jawa Barat 40113
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <div class="phone">
+          <div class="phone-icon"><%= fa_icon "phone" %></div>
+          <div class="info-detail">
+            <h3>Phone Number</h3>
+            <div class="addr">
+              (022) 42010050 <br> 
+              (022) 42010050
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <div class="email">
+          <div class="email-icon"><%= fa_icon "envelope-o" %></div>
+          <div class="info-detail">
+            <h3>Email</h3>
+            <div class="addr">
+              contactt@ang.com<br />
+              www.ang.com
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-us-form">
+  <div class="container">
+    <div class="title">
+      <h2>
+        If you have any questions or comments, or would just like to say hello, <br />
+        please feel free to contact our friendly team
+      </h2>
+    </div>
+    <form>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="nameTwo" class="sr-only">Name</label>
+            <input type="text" class="form-control" required="" id="nameTwo" placeholder="First Name">
+          </div>
+          
+          <div class="form-group">
+            <label for="emailTwo" class="sr-only">Email</label>
+            <input type="email" class="form-control" required="" id="emailTwo" placeholder="Email Address">
+          </div>
+
+          <div class="form-group">
+            <label for="emailTwo" class="sr-only">Email</label>
+            <input type="email" class="form-control" required="" id="emailTwo" placeholder="Email Address">
+          </div>
+        </div> <!-- col-md-4 -->
+
+        <div class="col-md-8">
+          <div class="form-group">
+            <label for="messageTwo" class="sr-only">Message</label>
+            <textarea class="form-control" required="" rows="7" placeholder="Write message"></textarea>
+          </div>
+        </div> <!-- col-md-8 -->
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-primary btn-lg pull-right">Send Message</button>          </div>
+        </div> <!-- col-md-12 -->
+      </div>
+    </form>
+  </div>
+</section>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnNJ6kkXnA5of0MVsW36r0meDM0schA4A&callback=initMap" async defer></script>
+

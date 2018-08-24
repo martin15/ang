@@ -1,0 +1,10 @@
+<% opt = "" %>
+<% unless @brands.blank? %>
+  <% opt = "" %>
+  <% @brands.each do |brand| %>
+    <% selected = params[:selected].to_i == brand.id.to_i ? "selected='selected'" : "" %>
+    <% opt = opt + "<option #{selected} value='#{brand.id}'>#{brand.name}</option>" %>
+  <% end %> 
+<% end %>
+
+$("select#brand_select").html("<%= j(raw(opt)) %>")

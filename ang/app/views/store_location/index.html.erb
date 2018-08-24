@@ -1,0 +1,31 @@
+<section class="single-page-title single-page-title-about">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h2>Store Location</h2>
+      </div>
+      <div class="col-md-5 align-self-center">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+            <li class="breadcrumb-item active" aria-current="page">Store Location</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-content store-location-list">
+  <div class="container">
+    <div class="row">
+      <% @store_locations.each do |store_location| %>
+        <div class="col-md-4 store-location">
+          <h4><%= store_location.name %></h4>
+          <div class="store-location-detail"><%= raw(simple_format(store_location.detail)) %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+

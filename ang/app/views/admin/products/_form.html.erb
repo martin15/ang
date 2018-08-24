@@ -1,0 +1,93 @@
+<%# content_for :javascript_includes do %>
+  <%#= javascript_include_tag "/assets/ckeditor/ckeditor" %>
+<%# end %>
+
+<%= simple_form_for [:admin, @product], html: {multipart: true}, wrapper: :horizontal_form,
+                    wrapper_mappings: {
+                      boolean:       :horizontal_boolean,
+                      check_boxes:   :vertical_collection,
+                      file:          :horizontal_file
+                    } do |f| %>
+  <%= f.error_notification %>
+  <%= f.association :category, include_blank: false, :input_html => {id: "category_select" } %>
+  <%= f.association :brand, collection: [], :input_html => {id: "brand_select" } %>
+  <%= f.input :name %>
+  <%#= f.input :model %>
+  <%= f.input :short_specification, :input_html => { :rows => 4 } %>
+  <%= f.input :specification, :input_html => { :rows => 7 } %>
+  <%= f.input :detail, :input_html => { :rows => 7 } %>
+  <% index = 0%>
+  <%= f.simple_fields_for :product_images do |p| %>
+    <% if p.object.new_record? %>
+      <%= p.input :image, as: :file, input_html: { multiple: true, 
+                  name: "product[product_images_attributes][][image]" }  %>
+    <% else%>
+      <% if index == 0%>
+        <div class="form-group row file optional product_product_images_image" id="manage-image">
+          <label class="col-sm-3 form-control-label file optional">Image</label>
+            <div class="col-sm-9">
+              <div class="col-sm-12 add-new-product-image">
+                <%= link_to "Add New Image", new_admin_product_image_path(@product.id), 
+                            class: "btn btn-success", remote: true %>
+              </div>
+      <% end %>
+      <% index +=1 %>
+
+      <span class="product-form-image <%= 'image-error' if p.object.id.to_i == params[:failed_product_image].to_i %>">
+        <%
+        puts "------"
+        puts p.object.id.inspect;
+        puts params[:failed_product_image].inspect;
+        puts p.object.id.to_i == @failed_product_image.to_i
+        puts "------"
+        %>
+        <%= image_tag p.object.image.url(:thumb), class: "img-fluid" %>
+        <%= link_to "edit", edit_admin_product_image_path(@product.id, p.object.id),
+                    class: "btn btn-primary", remote: true %>
+        <%= link_to "delete", admin_product_image_path(@product.id, p.object.id),  
+                    class: "btn btn-danger", :method => :delete, data: {:confirm => "Are you sure?"} %>
+      </span>
+
+      <% if index == f.object.product_images.size.to_i %>
+          </div>
+        </div>
+      <% end %>
+
+    <% end %>
+  <% end %>
+  <%= f.input :promo, label: '' %>
+  <%= f.input :best_seller, label: '' %>
+  <div class="form-group row mb-0">
+    <div class="col-sm-9 offset-sm-3">
+      <%= f.button :submit, class: "btn-primary" %>
+      <%= link_to "Cancel", admin_products_path(:page => params[:page]), 
+                  class: "btn btn-outline-secondary" %>
+    </div>
+  </div>
+<% end %>
+
+<div id="edit-image"></div>
+
+
+<script>
+  $(document).ready(function() {
+    console.log($("select#category_select").val())
+    reload_brand($("select#category_select").val())
+    $("select#category_select").change(function(){
+      reload_brand(this.value);
+    })
+    function reload_brand(cat_id){
+      // alert(cat_id)
+      $.ajax({
+        type: "POST",
+        url: "/admin/products/reload_brand",
+        data: {
+          "cat_id": cat_id,
+          "selected": <%= params[:product].nil? ? '-1' : params[:product][:brand_id] %>
+        }
+      });
+    }
+  });
+</script>
+
+

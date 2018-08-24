@@ -1,0 +1,14 @@
+<% opt = "" %>
+<% unless @brands.blank? %>
+  <% opt = "" %>
+  <% @brands.each do |brand| %>
+    <% selected = params[:selected] == brand.permalink ? "selected='selected'" : "" %>
+    <% opt = opt + "<option #{selected} value='#{brand.permalink}'>#{brand.name}</option>" %>
+  <% end %> 
+<% end %>
+$("select#brand_select").prop("disabled", false)
+$("select#brand_select").html("<%= j(raw(opt)) %>")
+
+<% if @category.name.downcase == "promo" %>
+  $("select#brand_select").prop("disabled", true)
+<% end %>

@@ -1,0 +1,29 @@
+<section class="single-page-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h2>Banners</h2>
+      </div>
+      <div class="col-md-5 align-self-center">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Admin", admin_path %></li>
+            <li class="breadcrumb-item"><%= link_to "Banner", admin_banners_path %></li>
+            <li class="breadcrumb-item active" aria-current="page">New Banner</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="admin-section-content">
+  <div class="container">
+    <div class="row">
+    <div class="col-sm-12 admin-banners">
+      <%= render :partial => "shared/flash" %>
+      <%= render :partial => 'form' %>
+    </div>
+    </div>
+  </div>
+</section>

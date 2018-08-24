@@ -1,0 +1,121 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "jquery.flexslider" %>
+  <%= stylesheet_link_tag  "flexslider" %>
+<% end %>
+
+<script>
+$(document).ready(function(){
+  $('#testimonies').flexslider({
+    animation: "slide",
+    animationLoop: false,
+    slideshow: false,
+    itemWidth: 100,
+    itemMargin: 5,
+    maxItems: 1
+  });
+});
+</script>
+
+<section class="single-page-title single-page-title-about">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h2>About Us</h2>
+      </div>
+      <div class="col-md-5 align-self-center">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+            <li class="breadcrumb-item active" aria-current="page">About Us</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-content about-us">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+          <h2>We help you to get appear on first page of serach engines</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 our-company">
+        <p>PT. Aneka Niaga Global merupakan perusahaan yang bergerak di bidang pengadaan Barang dan 
+           Jasa Informasi Teknologi (IT) yang meliputi perangkat keras (hardware), perangkat lunak 
+           (software), peratalan/accesories dan service / pemeliharaan.
+        </p>
+        <p>Berpengalaman sejak tahun 1996 yang menekuni bisnis Informasi dan Teknologi serta memiliki 
+           hubungan kerjasama yang sangat erat dengan sejumlah mitra yang baik dari pemerintah maupun s
+           wasta serta hubungan yang sangat erat dengan sejumlah produsen pemengang merk IT, maka mulai 
+           tanggal 29 April 2009 perusahaan ini telah berbadan hukum yang didirikan di hadapan 
+           Notaris R. Tendy Suwarman,SH serta telah terdafar di Pengadilan Negeri Bandung pada tanggal 
+           05 Juni 2009. 
+        </p>
+      </div>
+      <div class="col-md-6 our-company">
+        <p>Berlandaskan hal ini kami melayani dengan kepuasan mitra kami dalam kurun waktu yang sangat 
+            lama maka menjadi prioritas kami.</p>
+        <p>Kami sangat yakin PT. Aneka Niaga Global dengan jaringan yang luas serta profesinalisme 
+           kerja serta komitmen atas setiap pelayanan dan memiliki nilai tambah demi tercapainya tujuan 
+           bersama, kami percaya akan maju dan berkembang bersama yang bersinergi dalam perkembangan 
+           Informasi dan Teknologi.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-content our-value">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <h3>Our Principles</h3>
+          <%= image_tag "img-about-1.png", class: "img-fluid" %>
+        <p>Competently supply maintainable information after resource-leveling intellectual capital. 
+           Synergistically simplify process-centric internal or "organic" sources via next-generation
+           mindshare.</p>
+      </div>
+      <div class="col-sm-4">
+        <h3>Our Standards</h3>
+          <%= image_tag "img-about-2.png", class: "img-fluid" %>
+        <p>Competently supply maintainable information after resource-leveling intellectual capital. 
+           Synergistically simplify process-centric internal or "organic" sources via next-generation
+           mindshare.</p>
+      </div>
+      <div class="col-sm-4">
+        <h3>Our Capabilities</h3>
+          <%= image_tag "img-about-3.png", class: "img-fluid" %>
+        <p>Competently supply maintainable information after resource-leveling intellectual capital.
+           Synergistically simplify process-centric internal or "organic" sources via next-generation 
+           mindshare.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-content our-testimony">
+  <div class="container">
+    <div id="testimonies" class="flexslider">
+      <ul class="slides row">
+        <% (1..8).each do |x| %>
+          <li>
+            <div class="col-sm-12 testimony-box">
+              <h3>Satisfied <span class='blue-text'>Customer</span></h3>
+              <%= image_tag "client-1.jpg", class: "rounded-circle" %>
+              <div class="testimony-content">
+                "Competently supply maintainable information after resource-leveling intellectual capital. 
+                Synergistically simplify process-centric internal or "organic" sources via next-generation
+                mindshare."
+              </div>
+              <div class="testimony-name">COLLIN TA'EED</div>
+              <div class="testimony-company">Monster Inc.</div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</section>

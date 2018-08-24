@@ -1,0 +1,62 @@
+<section class="single-page-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h2>Brands</h2>
+      </div>
+      <div class="col-md-5 align-self-center">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Admin", admin_path %></li>
+            <li class="breadcrumb-item active" aria-current="page">Brands</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="admin-section-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 admin-brands">
+        <%= render :partial => "shared/flash" %>
+        <p><%= link_to "Add new brand", new_admin_brand_path, class: "btn btn-primary" %></p>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Logo</th>
+              <th>Name</th>
+              <th>Categories</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @brands.each_with_index do |brand, x| %>
+              <tr>
+                <th scope="row"><%= @no+x+1 %></th>
+                <td><%= image_tag brand.logo.url(:thumb), class: "img-fluid" unless brand.logo.url(:thumb).nil? %></td>
+                <td><%= brand.name %></td>
+                <td>
+                  <% brand.categories.each do |category| %>
+                    <%= category.name %><br />
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to "Service Center", admin_service_centers_path(brand.id, :page => params[:page]), :class => "btn btn-info" %>
+                  <%= link_to "Edit", edit_admin_brand_path(brand.id, :page => params[:page]), :class => "btn btn-success" %>
+                  <%= link_to "Delete", admin_brand_path(brand.id, :page => params[:page] ), :method => :delete,
+                                        data: {:confirm => "Are you sure?"}, :class => "btn btn-danger" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <div class="col-xs-12 pagination justify-content-center"><%= paginate @brands %></div>
+      </div>
+    </div>
+  </div>
+</section>
+
