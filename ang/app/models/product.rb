@@ -25,7 +25,11 @@ class Product < ApplicationRecord
 
   def image(size)
     img = self.product_images.first
-    return img.image.url(size.to_sym)
+    if img.nil?
+      return "/assets/no-image-yet.jpg"
+    else
+      return img.image.url(size.to_sym)
+    end
   end
 
 end
