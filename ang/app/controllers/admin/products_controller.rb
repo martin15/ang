@@ -13,15 +13,10 @@ class Admin::ProductsController < Admin::ApplicationController
 
   def create
     @product = Product.new(product_params)
-puts @product.inspect
     if @product.save
       flash[:notice] = 'Product was successfully create.'
       redirect_to admin_products_path
     else
-      puts "==========="
-      puts @product.errors.inspect
-      puts @product.product_images.inspect
-      puts "===========---"
       @product.product_images = []
       @product.product_images.build 
       flash[:error] = "Product failed to create"
@@ -30,7 +25,9 @@ puts @product.inspect
   end
 
   def edit
-    @product.product_images
+    if @product.product_images.blank?
+      @product.product_images.build
+    end
   end
 
   def update
@@ -38,6 +35,9 @@ puts @product.inspect
       flash[:notice] = 'Product was successfully updated.'
       redirect_to admin_products_path
     else
+      if @product.product_images.blank?
+        @product.product_images.build
+      end
       flash[:error] = "Product failed to update"
       render :action => :edit
     end

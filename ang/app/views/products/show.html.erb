@@ -64,21 +64,13 @@ $(document).ready(function(){
             <h2><%= @product.name %></h2>
             <div id="slider" class="flexslider">
               <ul class="slides">
-                <% @product.product_images.each do |product_image| %>
-                  <li><%= image_tag product_image.image.url(:medium) %></li>
+                <% if @product.product_images.blank? %>
+                  <li><%= image_tag "no-image-yet.jpg" %></li>
+                <% else %>
+                  <% @product.product_images.each do |product_image| %>
+                    <li><%= image_tag product_image.image.url(:medium) %></li>
+                  <% end %>
                 <% end %>
-                <%# <li>
-                  <img src="https://unsplash.imgix.net/photo-1426200830301-372615e4ac54?fit=crop&fm=jpg&h=1080&q=75&w=1900" />
-                </li>
-                <li>
-                  <img src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?fit=crop&fm=jpg&h=1080&q=75&w=1900" />
-                </li>
-                <li>
-                  <img src="https://ununsplash.imgix.net/photo-1421098518790-5a14be02b243?fit=crop&fm=jpg&h=1080&q=75&w=1900" />
-                </li>
-                <li>
-                  <img src="https://unsplash.imgix.net/photo-1423439793616-f2aa4356b37e?fit=crop&fm=jpg&h=1080&q=75&w=1900" />
-                </li> %>
               </ul>
             </div>
 
@@ -87,18 +79,6 @@ $(document).ready(function(){
                 <% @product.product_images.each do |product_image| %>
                   <li><%= image_tag product_image.image.url(:thumb) %></li>
                 <% end %>
-                <%# <li>
-                  <img src="https://unsplash.imgix.net/photo-1426200830301-372615e4ac54?fit=crop&fm=jpg&h=1080&q=75&w=1900" />
-                </li>
-                <li>
-                  <img src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?fit=crop&fm=jpg&h=1080&q=75&w=1900" />
-                </li>
-                <li>
-                  <img src="https://ununsplash.imgix.net/photo-1421098518790-5a14be02b243?fit=crop&fm=jpg&h=1080&q=75&w=1900" />
-                </li>
-                <li>
-                  <img src="https://unsplash.imgix.net/photo-1423439793616-f2aa4356b37e?fit=crop&fm=jpg&h=1080&q=75&w=1900" />
-                </li> %>
               </ul>
             </div>
 
@@ -114,15 +94,6 @@ $(document).ready(function(){
                     <% @specifications.each do |specification| %>
                       <%= raw("<li>#{specification}</li>") %>
                     <% end %>
-                      <%# <li>256GB PCIe flash storage</li>
-                      <li>2.7 GHz dual-core Intel Core i5 processor</li>
-                      <li>Turbo Boost up to 3.1GHz</li>
-                      <li>Intel Iris Graphics 6100</li>
-                      <li>8GB memory (up from 4GB in 2013 model)</li>
-                      <li>10 hour battery life</li>
-                      <li>13.3" Retina Display</li>
-                      <li>Intect Box</li>
-                      <li>1 Year international warranty</li> %>
                   </ul>
                 </div>
                 <div class="col-lg-4 col-md-5 col-sm-12 col-12 item-detail">
@@ -131,10 +102,6 @@ $(document).ready(function(){
                     <% @details.each do |detail| %>
                       <%= raw("<li>#{detail}</li>") %>
                     <% end %>
-                      <%# <li>Condition :<span>New</span></li>
-                      <li>Brand :<span>Apple</span></li>
-                      <li>Color :<span>White</span></li>
-                      <li>Warranty :<span>1 Year</span></li> %>
                   </ul>
                 </div>
               </div>
