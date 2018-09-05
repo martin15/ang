@@ -2,7 +2,16 @@ class Admin::ProductsController < Admin::ApplicationController
   before_action :find_product, :only => [:edit, :update, :destroy, :delete]
 
   def index
-    @products = Product.all.page(params[:page]).per(20)
+    if !params[:brand].nil?
+      @products = Product.joins(:brand).where("brands.permalink = '#{params[:brand]}'").
+                          page(params[:page]).per(20)
+    elsif !params[:category].nil?
+      @products = Product.joins(:category).where("categories.permalink = '#{params[:category]}'").
+                          page(params[:page]).per(20)
+    else
+      @products = Product.all.page(params[:page]).per(20)
+    end
+    @products = @products.includes([:brand, :category])
     @no = paging(20)
   end
 
