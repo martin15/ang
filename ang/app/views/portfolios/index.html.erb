@@ -1,0 +1,58 @@
+<section class="single-page-title single-page-title-about">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h2>Portfolios</h2>
+      </div>
+      <div class="col-md-5 align-self-center">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+            <li class="breadcrumb-item active" aria-current="page">Portfolios</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 portfolio-list">
+          <% @portfolios_arr.each do |portfolio_arr| %>
+            <div class="row">
+              <% portfolio_arr.each do |portfolio| %>
+                <div class="col-12 col-md-4 portfolio">
+                  <div class="col-12 portfolio-short-detail">
+                    <%= link_to portfolio_path(portfolio.permalink) do %>
+                      <%= image_tag portfolio.image(:medium), :class => "img img-fluid" %>
+                    <% end %>
+                    <div class="col-12 title"><%= link_to portfolio.title, portfolio_path(portfolio.permalink) %></div>
+                    <div class="col-12 portfolio-info">
+                      <div class="col-12 portfolio-info-date">
+                        <i class="fa fa-calendar"></i><%= portfolio.updated_at.strftime('%d-%b-%Y') %>
+                      </div>
+                    </div>
+                    <div class="col-12 short-content">
+                      <%= simple_format(portfolio.short_description.to_s +
+                                        " #{link_to '[...]', portfolio_path(portfolio.permalink)}") %>
+                    </div>
+                    <div class="col-12 more">
+                      <%= link_to "Read More...", portfolio_path(portfolio.permalink), :class => "btn read-more" %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="col-12 no_padding_lr pagination"><%= paginate @portfolios %></div>
+        </div>
+
+
+    </div>
+  </div>
+</section>
+
+
+

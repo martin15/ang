@@ -1,0 +1,57 @@
+<section class="single-page-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h2>News</h2>
+      </div>
+      <div class="col-md-5 align-self-center">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Admin", admin_path %></li>
+            <li class="breadcrumb-item active" aria-current="page">News</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="admin-section-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 admin-news">
+        <%= render :partial => "shared/flash" %>
+        <p><%= link_to "Add new news", new_admin_news_path, class: "btn btn-primary" %></p>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Banner</th>
+              <th>Title</th>
+              <th>Short Content</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @all_news.each_with_index do |news, x| %>
+              <tr>
+                <th scope="row"><%= @no+x+1 %></th>
+                <td><%= image_tag news.banner.url(:small),:class => "img img-responsive" unless news.banner.url(:small).nil? %></td>
+                <td><%= news.title %></td>
+                <td><%= news.short_content %></td>
+                <td>
+                  <%= link_to "Edit", edit_admin_news_path(news.id), :class => "btn btn-success" %>
+                  <%= link_to "Delete", admin_news_path(news.id ), :method => :delete,
+                                        data: {:confirm => "Are you sure?"}, :class => "btn btn-danger" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <div class="col-xs-12 pagination justify-content-center"><%= paginate @all_news %></div>
+      </div>
+    </div>
+  </div>
+</section>

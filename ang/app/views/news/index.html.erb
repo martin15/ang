@@ -1,0 +1,88 @@
+<section class="single-page-title single-page-title-about">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h2>News</h2>
+      </div>
+      <div class="col-md-5 align-self-center">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+            <li class="breadcrumb-item active" aria-current="page">News</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-content">
+  <div class="container">
+    <div class="row">
+      <% unless @main_news.nil? %>
+        <div class="col main-news">
+          <div class="row">
+            <div class=col-sm-6>
+              <%= link_to news_detail_path(@main_news.permalink) do %>
+                <%= image_tag @main_news.banner.url(:large), :class => "img img-fluid" %>
+              <% end %>
+            </div>
+            <div class=col-sm-6>
+                <div class="col-12 title">
+                  <%= link_to @main_news.title, news_detail_path(@main_news.permalink) %>
+                </div>
+                <div class="col-12 news-info">
+                  <div class="col-12 news-info-date">
+                    <i class="fa fa-calendar"></i><%= @main_news.updated_at.strftime('%d-%b-%Y') %>
+                  </div>
+                </div>
+                <div class="col-12 short-content">
+                  <%= simple_format(@main_news.short_content +
+                                    " #{link_to '[...]', news_detail_path(@main_news.permalink)}") %>
+                </div>
+                <div class="col-12 more no-p-l-r">
+                  <%= link_to "Read More...", news_detail_path(@main_news.permalink), :class => "btn read-more" %>
+                </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="col-12 news-list">
+          <h1>Other News</h1>
+          <% @all_news_arr.each do |news_arr| %>
+            <div class="row">
+              <% news_arr.each do |news| %>
+                <div class="col-12 col-md-4 news">
+                  <div class="col-12 news-short-detail">
+                    <%= link_to news_detail_path(news.permalink) do %>
+                      <%= image_tag news.banner.url(:medium), :class => "img img-fluid" %>
+                    <% end %>
+                    <div class="col-12 title"><%= link_to news.title, news_detail_path(news.permalink) %></div>
+                    <div class="col-12 news-info">
+                      <div class="col-12 news-info-date">
+                        <i class="fa fa-calendar"></i><%= news.updated_at.strftime('%d-%b-%Y') %>
+                      </div>
+                    </div>
+                    <div class="col-12 short-content">
+                      <%= simple_format(news.short_content +
+                                        " #{link_to '[...]', news_detail_path(news.permalink)}") %>
+                    </div>
+                    <div class="col-12 more">
+                      <%= link_to "Read More...", news_detail_path(news.permalink), :class => "btn read-more" %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="col-12 no_padding_lr pagination"><%= paginate @all_news %></div>
+        </div>
+
+
+    </div>
+  </div>
+</section>
+
+
+

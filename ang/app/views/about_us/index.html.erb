@@ -100,18 +100,13 @@ $(document).ready(function(){
   <div class="container">
     <div id="testimonies" class="flexslider">
       <ul class="slides row">
-        <% (1..8).each do |x| %>
+        <% @testimonies.each do |testimony| %>
           <li>
             <div class="col-sm-12 testimony-box">
               <h3>Satisfied <span class='blue-text'>Customer</span></h3>
-              <%= image_tag "client-1.jpg", class: "rounded-circle" %>
-              <div class="testimony-content">
-                "Competently supply maintainable information after resource-leveling intellectual capital. 
-                Synergistically simplify process-centric internal or "organic" sources via next-generation
-                mindshare."
-              </div>
-              <div class="testimony-name">COLLIN TA'EED</div>
-              <div class="testimony-company">Monster Inc.</div>
+              <div class="testimony-content"><%= raw(testimony.content) %></div>
+              <div class="testimony-name"><%= testimony.name %></div>
+              <div class="testimony-company"><%= testimony.company %></div>
             </div>
           </li>
         <% end %>

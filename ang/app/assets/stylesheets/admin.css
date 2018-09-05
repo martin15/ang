@@ -18,14 +18,16 @@ section.admin-section-content a, #edit-image-modal input[type='submit']{
 }
 
 #manage-image span{ float:left; margin-right:50px; }
-#manage-image .add-new-product-image{ margin-bottom: 20px; }
+#manage-image .add-new-product-image, #manage-image .add-new-portfolio-image{ margin-bottom: 20px; }
 #edit-image-modal .modal-body img{ margin-bottom: 20px; }
 #edit-image-modal .modal-body .img-note, .input-note{ font-size: 12px; }
 #edit-image-modal .modal-body .product_image_image, 
 .admin-banners .banner_image, .admin-banners .banner_url,
-.admin-brands .brand_logo { margin-bottom: 0px; }
-.product-form-image img{ width: 200px; }
-.image-error{ border: 1px red solid; padding: 10px 0; border-radius: 5px; }
+.admin-brands .brand_logo, .admin-news .news_banner,
+#edit-image-modal .modal-body  .portfolio_image_image { margin-bottom: 0px; }
+.product-form-image img, .portfolio-form-image img{ width: 200px; }
+.image-error{ border: 1px red solid; padding: 10px; border-radius: 5px; }
+.image-no-error{ border: 1px #fff solid; padding: 10px; border-radius: 5px; }
 
 
 

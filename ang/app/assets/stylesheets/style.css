@@ -947,8 +947,151 @@ section.logged-user .row{
   font-size: 14px;
 }
 
+/* --------------------------------------------
+ *  News + Portfolio
+ *----------------------------------------------- */
 
+.news-list .row{
+  margin-bottom: 50px;
+}
 
+.news-list h1{
+  text-align: center;
+  color: #676767;
+  margin: 25px 0 50px;
+}
+
+.main-news{
+  padding: 50px;
+  background-color: #eee;
+  margin: 0 50px;
+}
+
+.news-list > .row > .news:after,
+.portfolio-list > .row > .portfolio:after {
+  content:"";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -20px;
+  width: 0;
+  height: 0;
+  border-left: solid 20px transparent;
+  border-right: solid 20px transparent;
+  border-bottom: solid 25px #eee;
+  z-index: 10;
+}
+
+.news .news-short-detail, .portfolio .portfolio-short-detail{
+  background-color: #eee;
+  padding: 25px;
+}
+
+.main-news .title, .news .news-short-detail .title, .news-detail .title,
+.portfolio .portfolio-short-detail .title, .portfolio-detail .title {
+  font-size: 25px;
+  padding: 0 0 15px 0;
+  text-align: center;
+  margin-top: 10px;
+  line-height: 25px;
+  color: #0d5399;
+}
+
+.main-news .news-info, .news .news-short-detail .news-info, .news-detail .news-info, 
+.portfolio .portfolio-short-detail .portfolio-info, .portfolio-detail .portfolio-info{
+  font-size: 11px;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #777;
+}
+
+.main-news .news-info, .main-news .news-info .news-info-date,{text-align: left;padding-left: 0;}
+
+.main-news .news-info .news-info-date,
+.news .news-short-detail .news-info .news-info-date,
+.news-detail .news-info .news-info-date,
+.portfolio .portfolio-short-detail .portfolio-info .portfolio-info-date,
+.portfolio-detail .portfolio-info .portfolio-info-date{
+  display: inline-block;
+  float: none;
+}
+
+.main-news .news-info .news-info-date i,
+.news .news-short-detail .news-info .news-info-date i,
+.news-detail .news-info .news-info-date i,
+.portfolio .portfolio-short-detail .portfolio-info .portfolio-info-date i,
+.portfolio-detail .portfolio-info .portfolio-info-date i{
+  margin-right: 7px;
+  color: #c3c3c3;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.main-news .short-content, .news .news-short-detail .short-content, .news-detail .full-content, 
+.portfolio .portfolio-short-detail .short-content, .portfolio-detail .full-content{
+  font-size: 13px;
+  color: #777;
+  padding: 0 0 20px 0;
+  line-height: 22px;
+}
+
+.news .news-short-detail .short-content, .news .news-short-detail .more,
+.portfolio .portfolio-short-detail .short-content, .portfolio .portfolio-short-detail .more{
+  text-align: center;
+}
+.main-news .title, .main-news .short-content, .main-news .more{text-align: left;}
+
+.main-news .more a.read-more, 
+.news .news-short-detail .more a.read-more, .portfolio .portfolio-short-detail .more a.read-more {
+  font-family: "Open Sans",sans-serif;
+  background-color: cornflowerblue; /* #6495ed */
+  border-color: #5d94fa;
+  color: #fff;
+  font-size: 13px;
+  padding: 10px 15px;
+  margin: 0 auto;
+}
+
+.main-news .more a.read-more:hover, 
+.news .news-short-detail .more a.read-more:hover, 
+.portfolio .portfolio-short-detail .more a.read-more:hover{
+  background-color: transparent;
+  border-color:#5d94fa;;
+  color: cornflowerblue;
+}
+
+.news-detail img.main-banner { margin-bottom: 35px; }
+
+.portfolio-images{ margin-bottom: 25px;}
+@media (min-width: 1200px) {
+  .news-list, .portfolio-list{
+    padding-left: 75px;
+    padding-right: 75px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .news-list, .portfolio-list{
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .news-list, .portfolio-list{
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .news-list, .portfolio-list{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+/*---------------------------- news end --------------------------------------*/
 
 
 

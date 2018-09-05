@@ -12,7 +12,6 @@
   <%= f.association :category, include_blank: false, :input_html => {id: "category_select" } %>
   <%= f.association :brand, collection: [], :input_html => {id: "brand_select" } %>
   <%= f.input :name %>
-  <%#= f.input :model %>
   <%= f.input :short_specification, :input_html => { :rows => 4 } %>
   <%= f.input :specification, :input_html => { :rows => 7 } %>
   <%= f.input :detail, :input_html => { :rows => 7 } %>
@@ -33,14 +32,7 @@
       <% end %>
       <% index +=1 %>
 
-      <span class="product-form-image <%= 'image-error' if p.object.id.to_i == params[:failed_product_image].to_i %>">
-        <%
-        puts "------"
-        puts p.object.id.inspect;
-        puts params[:failed_product_image].inspect;
-        puts p.object.id.to_i == @failed_product_image.to_i
-        puts "------"
-        %>
+      <span class="product-form-image <%= p.object.id.to_i == params[:failed_product_image].to_i ? 'image-error' : 'image-no-error' %>">
         <%= image_tag p.object.image.url(:thumb), class: "img-fluid" %>
         <%= link_to "edit", edit_admin_product_image_path(@product.id, p.object.id),
                     class: "btn btn-primary", remote: true %>

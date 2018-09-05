@@ -1,0 +1,42 @@
+<section class="single-page-title single-page-title-about">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h2>News Detail</h2>
+      </div>
+      <div class="col-md-5 align-self-center">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+            <li class="breadcrumb-item"><%= link_to "News", news_list_path %></li>
+            <li class="breadcrumb-item active" aria-current="page"><%= @news.title%></li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-content store-location-list">
+  <div class="container">
+    <div class="row">
+      <div class="col news-list">
+        <div class="col-12 news-detail">
+          <div class="col-12 title"><%= @news.title %></div>
+          <div class="col-12 news-info">
+            <div class="col-6 col-sm-3 news-info-date">
+              <i class="fa fa-calendar"></i><%= @news.updated_at.strftime('%d-%b-%Y') %>
+            </div>
+          </div>
+          <%= image_tag @news.banner.url(:large), :class => "img img-fluid d-block mx-auto main-banner" %>
+          <div class="col-12 full-content">
+            <%= raw(@news.content) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+

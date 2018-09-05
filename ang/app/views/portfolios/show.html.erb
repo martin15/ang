@@ -1,0 +1,93 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "jquery.flexslider" %>
+  <%= stylesheet_link_tag  "flexslider" %>
+<% end %>
+
+<script>
+$(document).ready(function(){
+  // The slider being synced must be initialized first
+  $('#carousel').flexslider({
+    animation: "slide",
+    controlNav: false,
+    animationLoop: false,
+    slideshow: false,
+    itemWidth: 150,
+    itemMargin: 5,
+    asNavFor: '#slider',
+    maxItems: 5
+  });
+ 
+  $('#slider').flexslider({
+    animation: "fade",
+    controlNav: false,
+    animationLoop: false,
+    slideshow: false,
+    sync: "#carousel"
+  });
+});
+</script>
+
+<section class="single-page-title single-page-title-about">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h2>Portfolio Detail</h2>
+      </div>
+      <div class="col-md-5 align-self-center">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+            <li class="breadcrumb-item"><%= link_to "Portfolios", portfolios_path %></li>
+            <li class="breadcrumb-item active" aria-current="page"><%= @portfolio.title%></li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-content store-location-list">
+  <div class="container">
+    <div class="row">
+      <div class="col portfolio-list">
+        <div class="col-12 portfolio-detail">
+          <div class="col-12 title"><%= @portfolio.title %></div>
+          <div class="col-12 portfolio-info">
+            <div class="col-6 col-sm-3 portfolio-info-date">
+              <i class="fa fa-calendar"></i><%= @portfolio.updated_at.strftime('%d-%b-%Y') %>
+            </div>
+          </div>
+          <div class="row justify-content-md-center">
+            <div class="col-10 portfolio-images">
+              <div id="slider" class="flexslider">
+                <ul class="slides">
+                  <% if @portfolio.portfolio_images.blank? %>
+                    <li><%= image_tag "no-image-yet.jpg" %></li>
+                  <% else %>
+                    <% @portfolio.portfolio_images.each do |portfolio_image| %>
+                      <li><%= image_tag portfolio_image.image.url(:medium) %></li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              </div>
+
+              <div id="carousel" class="flexslider">
+                <ul class="slides">
+                  <% @portfolio.portfolio_images.each do |portfolio_image| %>
+                    <li><%= image_tag portfolio_image.image.url(:thumb) %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+            </div>
+          <div class="col-12 full-content">
+            <%= raw(@portfolio.description) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+

@@ -27,7 +27,12 @@ Rails.application.routes.draw do
       end
     end
     resources :categories
-    # resources :product_images
+    resources :news
+    resources :portfolios do
+      member do
+        resources :portfolio_images, except: [:index], param: :portfolio_image_id
+      end
+    end
     resources :products do
       collection do
         post :reload_brand
@@ -37,6 +42,7 @@ Rails.application.routes.draw do
       end
     end
     resources :store_locations
+    resources :testimonies
   end
 
   root 'home#index'

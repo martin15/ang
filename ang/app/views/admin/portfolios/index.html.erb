@@ -1,0 +1,57 @@
+<section class="single-page-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h2>Portfolios</h2>
+      </div>
+      <div class="col-md-5 align-self-center">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to "Admin", admin_path %></li>
+            <li class="breadcrumb-item active" aria-current="page">Portfolios</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="admin-section-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 admin-portfolios">
+        <%= render :partial => "shared/flash" %>
+        <p><%= link_to "Add new portfolio", new_admin_portfolio_path, class: "btn btn-primary" %></p>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @portfolios.each_with_index do |portfolio, x| %>
+              <tr>
+                <th scope="row"><%= @no+x+1 %></th>
+                <td><%= portfolio.title %></td>
+                <td><%= raw(portfolio.description)%></td>
+                <td>
+                  <%= link_to "Edit", edit_admin_portfolio_path(portfolio.id, :page => params[:page]), 
+                              :class => "btn btn-success" %>
+                  <%= link_to "Delete", admin_portfolio_path(portfolio.id, :page => params[:page] ), 
+                              :method => :delete, data: {:confirm => "Are you sure?"}, 
+                              :class => "btn btn-danger" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <div class="col-xs-12 pagination justify-content-center"><%= paginate @portfolios %></div>
+      </div>
+    </div>
+  </div>
+</section>
+

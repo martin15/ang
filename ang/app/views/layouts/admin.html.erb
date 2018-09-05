@@ -75,9 +75,18 @@
               <% end %>
             </li>
             <li class="nav-item active">
-              <%= link_to "#", class: "nav-link" do %>
-                <div class="col-sm-12 no-p-l-r">Logout</div>
+              <%= link_to admin_news_index_path, class: "nav-link" do %>
+                <div class="col-sm-12 no-p-l-r">News</div>
               <% end %>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="col-sm-12 no-p-l-r dropdown-toggle">About Us</div>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><%= link_to "Testimonies", admin_testimonies_path, class: "dropdown-item" %></li>
+                <li><%= link_to "Portfolios", admin_portfolios_path, class: "dropdown-item" %></li>
+              </ul>
             </li>
             
           </ul>
