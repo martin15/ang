@@ -45,8 +45,8 @@ class ProductsController < ApplicationController
       @products = Product.promos
     else
       name = ""
-      name = "( products.name = '#{params[:name]}' or products.model = '#{params[:name]}' or 
-                products.permalink = '#{params[:name]}' ) and " unless params[:name].blank?
+      name = "( products.name like '%#{params[:name]}%' or products.model like '%#{params[:name]}%' or 
+                products.permalink like '%#{params[:name]}%' ) and " unless params[:name].blank?
       @products = Product.joins(:brand, :category).
                           where(" #{name}
                                 brands.permalink = '#{params[:brand]}' and
