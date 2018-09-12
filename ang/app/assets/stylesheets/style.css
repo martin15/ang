@@ -90,6 +90,7 @@ section.section-content {
 div.collapse ul ul ul{
   top: -25px!important;
   left: 100%;
+  margin-left: -5px;
 }
 
 .dropdown-menu::before {
@@ -220,6 +221,7 @@ background-size: cover;
   z-index: 1;
 }
 
+#brands ol.flex-control-paging{ position: unset; }
 /* --------------------------------------------
  *  Footer
  *----------------------------------------------- */

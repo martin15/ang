@@ -110,12 +110,20 @@
       <div class="col-md-12 b-header">
         <h2>Popular Brands</h2>
       </div>
-      <% (1..6).each do |x| %>
-      <div class="col-md-2 brand">
-        <%= image_tag "#{x}.png", class: "img-fluid"  %>
-      </div>
-      <% end %>
     </div>
+      <div id="brands" class="flexslider">
+        <ul class="slides row">
+          <% @popular_brands.each do |popular_brand| %>
+            <% unless popular_brand.logo.url.nil? %>
+              <li>
+                <%# <div class="brand"> %>
+                  <%= image_tag popular_brand.logo.url(:medium), class: "img-fluid"  %>
+                <%# </div> %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
   </div>
 </section>
 
@@ -207,6 +215,16 @@
         itemMargin: 5,
         maxItems: 4
       });
+
+      $('#brands').flexslider({
+        animation: "slide",
+        animationLoop: false,
+        slideshow: false,
+        itemWidth: 100,
+        itemMargin: 50,
+        maxItems: 5
+      });
+
     });
   </script>
 

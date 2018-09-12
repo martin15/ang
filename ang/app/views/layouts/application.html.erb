@@ -58,7 +58,7 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <% @categories.each do |category| %>
-                  <li>
+                  <li style="position:relative">
                     <% brands = category.brands %>
                     <% if brands.blank? %>
                       <%= link_to category.name.titleize, "javascript:void(0)", class: "dropdown-item" %>
