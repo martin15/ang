@@ -69,7 +69,7 @@
   </div>
 </section>
 
-<section class="contact-us-form">
+<section class="contact-us-form" id="cu-form">
   <div class="container">
     <div class="title">
       <h2>
@@ -77,36 +77,32 @@
         please feel free to contact our friendly team
       </h2>
     </div>
-    <form>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-group">
-            <label for="nameTwo" class="sr-only">Name</label>
-            <input type="text" class="form-control" required="" id="nameTwo" placeholder="First Name">
-          </div>
-          
-          <div class="form-group">
-            <label for="emailTwo" class="sr-only">Email</label>
-            <input type="email" class="form-control" required="" id="emailTwo" placeholder="Email Address">
-          </div>
 
-          <div class="form-group">
-            <label for="emailTwo" class="sr-only">Email</label>
-            <input type="email" class="form-control" required="" id="emailTwo" placeholder="Email Address">
-          </div>
+    <%= simple_form_for [@contact], url: "contact_us#cu-form" do |f| %>
+      <div class="row">
+      <div class="col-md-12"><%= f.error_notification %></div>
+        <div class="col-md-4">
+           <%= f.input :name, label_html: { class: 'sr-only' }, placeholder: "Name" %>
+           <%= f.input :email, label_html: { class: 'sr-only' }, placeholder: "Email" %>
+           <%= f.input :company_name , label_html: { class: 'sr-only' }, placeholder: "Company Name" %>
+           <%= f.input :phone, label_html: { class: 'sr-only' }, placeholder: "Phone Number" %>
         </div> <!-- col-md-4 -->
 
         <div class="col-md-8">
-          <div class="form-group">
-            <label for="messageTwo" class="sr-only">Message</label>
-            <textarea class="form-control" required="" rows="7" placeholder="Write message"></textarea>
-          </div>
+           <%= f.input :subject , label_html: { class: 'sr-only' }, placeholder: "Subject" %>
+           <%= f.input :content , label_html: { class: 'sr-only' }, placeholder: "Write Message", 
+                       as: "text", :input_html => { :rows => 7 } %>
         </div> <!-- col-md-8 -->
+
+        <div class="col-md-12 mb-1">
+          <span class="pull-right"><%= recaptcha_tags %></span>
+        </div> <!-- col-md-12 -->
+
         <div class="col-md-12">
-          <button type="submit" class="btn btn-primary btn-lg pull-right">Send Message</button>          </div>
+          <button type="submit" class="btn btn-primary btn-lg pull-right">Send Message</button>
         </div> <!-- col-md-12 -->
       </div>
-    </form>
+    <% end %>
   </div>
 </section>
 

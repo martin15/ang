@@ -88,4 +88,27 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[Error] ",
+    :sender_address => %{"notifier" <notifier@ang-itsolution.co.id>},
+    :exception_recipients => %w{martin.me15@yahoo.com}
+  }
+
+  config.action_mailer.default_url_options = { :host => 'ang-itsolution.co.id' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = {from: 'no-reply@ang-itsolution.co.id'}
+  config.mailer_sender = '"ANG IT Solution" <no-reply@ang-itsolution.co.id>'
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => "ang-itsolution.co.id",
+    :user_name            => "ang.itsolution.mailer@gmail.com",
+    :password             => "ang123qwe",
+    :authentication       => :plain,
+    :enable_starttls_auto => true
+  }
 end

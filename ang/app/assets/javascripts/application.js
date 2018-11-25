@@ -61,12 +61,12 @@ $(document).ready(function() {
 
 $(window).scroll(function() {
   if ($(this).scrollTop() >= 50) {
-      $(".menu-icon").addClass('d-none')
-      $('nav.navbar').addClass('sticky-nav');
+      $("nav.navbar.main .menu-icon").addClass('d-none')
+      $('nav.navbar.main').addClass('sticky-nav');
   }
   else {
-      $(".menu-icon").removeClass('d-none')
-      $('nav.navbar').removeClass('sticky-nav');
+      $("nav.navbar.main .menu-icon").removeClass('d-none')
+      $('nav.navbar.main').removeClass('sticky-nav');
   }
 });
 

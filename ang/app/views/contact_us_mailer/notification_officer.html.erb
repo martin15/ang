@@ -1,0 +1,39 @@
+<%= link_to raw("<img src='http://#{@domain}/assets/logo.png' alt='logo' />"), "http://#{@domain}" ,
+            :target => "_blank"  %><br /><br /><br />
+
+<p>
+  Hi Admin, anda menerima email pertanyaan sebagain berikut :
+</p><br /><br /><br />
+<p>
+  <table>
+    <tr>
+      <td>Pengirim</td>
+      <td><%= @contact.name %></td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td><%= @contact.email %></td>
+    </tr>
+    <tr>
+      <td>Phone</td>
+      <td><%= @contact.phone %></td>
+    </tr>
+    <tr>
+      <td>Company Name</td>
+      <td><%= @contact.company_name %></td>
+    </tr>
+    <tr>
+      <td>Subject</td>
+      <td><%= @contact.subject %></td>
+    </tr>
+    <tr>
+      <td>Question</td>
+      <td><%= @contact.content %></td>
+    </tr>
+  </table>
+</p><br /><br /><br />
+<p>
+  Terima Kasih
+</p>
+
+

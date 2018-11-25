@@ -20,7 +20,7 @@
   <div class="container">
       <%= render :partial => "shared/flash" %>
     <div class="row">
-      <div class="col-md-3 product-side-menu">
+      <div class="col-12 col-md-3 product-side-menu">
         <div class="accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
           <div class="card">
             <div class="card-header product-side-menu-title" role="tab">Categories</div>
@@ -55,7 +55,7 @@
         </div>
       </div>
 
-      <div class="col-md-9 product-list">
+      <div class="col-12 col-md-9 product-list">
         <div class="row">
           <div class="col-md-12">
             <h2><%= "#{@category.name.titleize} - #{@brand.name.titleize}" %></h2>
@@ -65,7 +65,7 @@
           <%= render partial: "product_list", locals: { products: @products, category: @category, 
                                                         brand: @brand } %>
         </div>
-        <div class="col-xs-12 pagination justify-content-center"><%= paginate @products %></div>
+        <div class="col-12 pagination justify-content-center"><%= paginate @products %></div>
       </div>
     </div>
   </div>

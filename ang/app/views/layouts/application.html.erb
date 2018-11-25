@@ -12,7 +12,8 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', 'style' %>
-    <%= javascript_include_tag 'application' %>  <%= yield :javascript_includes %>
+    <%= javascript_include_tag 'application' %>
+    <%= yield :javascript_includes %>
     <%= yield :css_includes %>
     <!--[if lt IE 9]>
       <script src="/assets/html5shiv.js"></script>
@@ -22,7 +23,7 @@
 
   <body>
     <% unless current_user.nil? %>
-      <section class="logged-user">
+      <section class="d-none d-sm-block logged-user">
         <div class="row">
           <div class="col-12 user-info-bar">
             <div class="row">
@@ -36,7 +37,7 @@
       </section>
     <% end %>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light <%= manage_menu %>">
+    <nav class="d-none d-md-block navbar navbar-expand-lg navbar-light bg-light <%= manage_menu %> main">
       <div class="container">
         <%= link_to (image_tag "logo.png", class: "img-fluid"), root_path, class: "navbar-brand" %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,8 +48,8 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
               <%= link_to root_path, class: "nav-link" do %>
-                <div class="col-sm-12 menu-icon"><%= fa_icon "home" %></div>
-                <div class="col-sm-12">Home</div>
+                  <div class="col-md-12 menu-icon"><%= fa_icon "home" %></div>
+                  <div class="col-md-12">Home</div>
               <% end %>
             </li>
             <li class="nav-item dropdown">
@@ -116,13 +117,15 @@
       </div>
     </nav>
 
-    <%= yield %>
+    <div class="overlay">
+      <%= yield %>
+    </div>
 
     <footer class="footer">
       <div class="footer-widget-section">
         <div class="container text-center">
             <div class="row">
-                <div class="col-sm-4 footer-block">
+                <div class="col-12 col-md-4 footer-block">
                     <div class="footer-widget widget_text">
                         <div class="footer-logo">
                           <%= image_tag "small_logo.png", class: "img-fluid", style: "height: 50px;margin-bottom:50px;" %>
@@ -132,7 +135,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4 footer-block">
+                <div class="col-12 col-md-4 footer-block">
                     <div class="footer-widget widget_text">
                         <h3>We work for your profit</h3>
                         <p>Distinctively expedite viral materials rather than out-of-the-box solutions. Credibly empower
@@ -141,7 +144,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4 footer-block last">
+                <div class="col-12 col-md-4 footer-block last">
                     <div class="footer-widget widget_text">
                         <h3>Contact Us Today</h3>
                         <address>
@@ -170,6 +173,93 @@
         <!-- .container -->
       </div>
     </footer>
+
+
+    <!-- Mobile Menu //-->
+    <div class="ct-menu-mobile">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <%= link_to (image_tag "logo.png", class: "img-fluid"), root_path, class: "navbar-brand" %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMobile" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarMobile">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <%= link_to root_path, class: "nav-link" do %>
+                  <div class="row">
+                    <div class="col-2 col-sm-2 menu-icon"><%= fa_icon "home" %></div>
+                    <div class="col-10 col-sm-10 col-md-12 align-self-center">Home</div>
+                  </div>
+                <% end %>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div class="row">
+                    <div class="col-2 col-sm-2 menu-icon"><%= fa_icon "desktop" %></div>
+                    <div class="col-10 col-sm-10 dropdown-toggle align-self-center">Product</div>
+                  </div>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <% @categories.each do |category| %>
+                    <li style="position:relative">
+                      <%= link_to category.name.titleize, "javascript:void(0)", class: "dropdown-item" %>
+                    </li>
+                  <% end %>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div class="row">
+                    <div class="col-2 col-sm-2 menu-icon"><%= fa_icon "user" %></div>
+                    <div class="col-10 col-sm-10 dropdown-toggle">Support</div>
+                  </div>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%= link_to "Contact Us", contact_us_path, class: "dropdown-item" %>
+                  <%= link_to "Store Location", store_location_path, class: "dropdown-item" %>
+                  <%= link_to "Service Center", service_center_path, class: "dropdown-item" %>
+                </div>
+              </li>
+              <li class="nav-item">
+                <%= link_to news_list_path, class: "nav-link" do %>
+                  <div class="row">
+                    <div class="col-2 col-sm-2 menu-icon"><%= fa_icon "newspaper-o" %></div>
+                    <div class="col-10 col-sm-10">News</div>
+                  </div>
+                <% end %>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div class="row">
+                    <div class="col-2 col-sm-2 menu-icon"><%= fa_icon "id-card" %></div>
+                    <div class="col-10 col-sm-10 dropdown-toggle">About Us</div>
+                  </div>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%= link_to "Our Company", about_us_path, class: "dropdown-item" %>
+                  <%= link_to "Out Portfolio", portfolios_path, class: "dropdown-item" %>
+                </div>
+              </li>
+              <li class="nav-item dropdown search-container">
+                <a class="nav-link" href="javascript:void(0)" id="display-search-form" data-toggle="modal" data-target="#searchModal">
+                  <div class="row">
+                    <div class="col-2 col-sm-2 menu-icon"><%= fa_icon "search" %></div>
+                    <div class="col-10 col-sm-10">Search</div>
+                  </div>
+                </a>
+                <%= render partial: "shared/search_form", locals: {categories: @categories} %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+
+
+
     <div id="toTop"><i class="fa fa-angle-up"></i></div>
   </body>
 </html>

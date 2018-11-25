@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'about_us' => "about_us#index"
   get 'contact_us' => 'contact_us#index'
+  post 'contact_us' => 'contact_us#create', :as => 'save_contact_us'
   get 'news' => "news#index", as: "news_list"
   get 'news/:permalink' => "news#show", as: "news_detail"
   get 'portfolios' => "portfolios#index", as: "portfolios"
