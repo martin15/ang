@@ -7,9 +7,9 @@
   <% @banners.each do |banner| %>
     <div class="item">
       <% if banner.url.blank? %>
-        <%= image_tag banner.image.url, :class=> "img-fluid" %>
+        <%= image_tag banner.image.url, :class=> "img-fluid", alt: "ANG ang Aneka Global Niaga" %>
       <% else %>
-        <%= link_to (image_tag banner.image.url, :class=> "img-fluid"), "http://#{banner.url}", target: :blank %>
+        <%= link_to (image_tag banner.image.url, :class=> "img-fluid", alt: "ANG ang Aneka Global Niaga"), "http://#{banner.url}", target: :blank %>
       <% end %>
     </div>
   <% end %>
@@ -22,10 +22,17 @@
     <div class="row">
       <div class="col-lg-9">
         <div class="h-about-us-header">
-          <h3>P.T. Aneka Niaga Global – IT Solutions</h3>
+          <h3>PT. Aneka Niaga Global – IT Solutions</h3>
         </div>
-        <p class="nobottommargin">Sebuah perusahaan yang menjual produk – produk IT yang
-           diperlukan untuk usaha dan perkantoran.</p>
+        <p class="nobottommargin">PT. Aneka Niaga Global merupakan perusahaan yang bergerak di bidang pengadaan Barang dan
+          Jasa Informasi Teknologi (IT) yang meliputi perangkat keras (hardware), perangkat lunak
+          (software) dan peralatan/accessories lainnya. Berlandaskan hal ini kami melayani dengan
+          kepuasan mitra kami dalam kurun waktu yang sangat lama maka menjadi prioritas kami. Kami
+          sangat yakin PT. Aneka Niaga Global dengan jaringan yang luas serta profesionalisme kerja serta
+          komitmen atas setiap pelayanan dan memiliki nilai tambah demi tercapainya tujuan bersama,
+          kami percaya akan maju dan berkembang bersama yang bersinergi dalam perkembangan
+          Informasi dan Teknologi.
+        </p>
       </div>
       <div class="col-lg-3">
         <%= link_to "Check our Products", products_by_category_path("notebook", "acer"), 
@@ -37,25 +44,32 @@
         <div class="fancy-title">
           <h4>Sejarah</h4>
         </div>
-        <p>P.T. ANG berdiri sejak tahun 2009.</p>
-        <p>Perusahaan ini dimulai dari sebuah toko computer pada tahun 1990. P.T. ANG terus berkembang 
-            dari segi market dan produk dari computer sampai ke laptop, printer, projektor, 
-            komponen / hardware computer, dan aksesoris IT.</p>
+        <p>PT ANG berdiri sejak tahun 2009.</p>
+        <p>Berpengalaman sejak tahun 1996 yang menekuni bisnis Informasi dan Teknologi serta memiliki
+           hubungan kerjasama yang sangat erat dengan sejumlah mitra yang baik dari pemerintah
+           maupun swasta serta hubungan yang sangat erat dengan sejumlah produsen pemegang merk IT.</p>
       </div>
       <div class="col-lg-4 wow">
         <div class="fancy-title">
           <h4>Visi</h4>
         </div>
-        <p>Menjadi penyedia produk dan perangkat IT yang sesuai dengan perkembangan teknologi di 
-            Jawa Barat.</p>
+        <p>Menjadi konsultan yang terdepan dalam bidang Informasi dan Teknologi dengan selalu
+           memberikan solusi yang inovatif sehingga setiap mitra kami mendapatkan kepuasan.</p>
       </div>
-      <div class="col-lg-4 wow no-p-r">
+      <div class="col-lg-4 wow no-p-r ">
         <div class="fancy-title">
           <h4>Misi</h4>
         </div>
-        <p>Mendukung bisnis pelanggan – pelanggan melalui penawaran produk – produk yang berkualitas dan 
-            pelayanan yang baik, dengan kebudayaan perusahaan yang kuat, rekan – rekan kerja yang handal, 
-            teknologi yang memadai, dan sehat secara finansial.</p>
+        <p class="no-m-b">Misi yang kita emban dalam bidang Informasi dan Teknologi dalam pengadaan barang dan jasa
+           memberikan yang terbaik dengan nilai tambah kepada setiap mitra yang menjalin kerjasama
+           dengan kami berdasarkan prinsip :
+           <ul class="dashed">
+            <li>Berorientasi kemitraan</li>
+            <li>Efektivitas dan efesiensi atas solusi</li>
+            <li>Kualitas dan professional kerja yang tinggi</li>
+            <li>Komitmen dalam setiap pekerjaan</li>
+           </ul>   
+        </p>
       </div>
     </div>
   </div>
@@ -75,7 +89,7 @@
                   <figure>
                     <%= raw(tag_value(product)) %>
                     <%= link_to product_path(product.category.permalink, product.brand.permalink, product.permalink) do %>
-                      <%= image_tag product.image('thumb'), alt: "image description", class: "img-fluid" %>
+                      <%= image_tag product.image('thumb'), alt: "ANG ang Aneka Global Niaga - #{product.name}", class: "img-fluid" %>
                     <% end %>
                   </figure>
                   <div class="pd-box-content">
@@ -116,7 +130,7 @@
             <% unless popular_brand.logo.url.nil? %>
               <li>
                 <%# <div class="brand"> %>
-                  <%= image_tag popular_brand.logo.url(:medium), class: "img-fluid"  %>
+                  <%= image_tag popular_brand.logo.url(:medium), class: "img-fluid", alt: "ANG ang Aneka Global Niaga - #{popular_brand.name}"  %>
                 <%# </div> %>
               </li>
             <% end %>

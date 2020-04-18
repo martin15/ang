@@ -28,7 +28,8 @@
               <i class="fa fa-calendar"></i><%= @news.updated_at.strftime('%d-%b-%Y') %>
             </div>
           </div>
-          <%= image_tag @news.banner.url(:large), :class => "img img-fluid d-block mx-auto main-banner" %>
+          <%= image_tag @news.banner.url(:large), :class => "img img-fluid d-block mx-auto main-banner",
+                              alt: "ANG ang Aneka Global Niaga - #{@news.title}" %>
           <div class="col-12 full-content">
             <%= raw(@news.content) %>
           </div>

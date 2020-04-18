@@ -4,7 +4,8 @@
       <figure>
         <%= raw(tag_value(product)) %>
         <%= link_to product_path(category.permalink, brand.permalink, product.permalink) do %>
-          <%= image_tag product.image('thumb'), alt: "image description", class: "img-fluid" %>
+          <%= image_tag product.image('thumb'), class: "img-fluid",
+                        alt: "ANG ang Aneka Global Niaga - #{product.name}"  %>
         <% end %>
       </figure>
       <div class="pd-box-content">

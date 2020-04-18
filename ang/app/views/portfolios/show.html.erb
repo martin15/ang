@@ -62,10 +62,12 @@ $(document).ready(function(){
               <div id="slider" class="flexslider">
                 <ul class="slides">
                   <% if @portfolio.portfolio_images.blank? %>
-                    <li><%= image_tag "no-image-yet.jpg" %></li>
+                    <li><%= image_tag "no-image-yet.jpg",
+                                      alt: "ANG ang Aneka Global Niaga - #{@portfolio.title}" %></li>
                   <% else %>
                     <% @portfolio.portfolio_images.each do |portfolio_image| %>
-                      <li><%= image_tag portfolio_image.image.url(:medium) %></li>
+                      <li><%= image_tag portfolio_image.image.url(:medium),
+                                      alt: "ANG ang Aneka Global Niaga - #{@portfolio.title}" %></li>
                     <% end %>
                   <% end %>
                 </ul>
@@ -74,7 +76,8 @@ $(document).ready(function(){
               <div id="carousel" class="flexslider">
                 <ul class="slides">
                   <% @portfolio.portfolio_images.each do |portfolio_image| %>
-                    <li><%= image_tag portfolio_image.image.url(:thumb) %></li>
+                    <li><%= image_tag portfolio_image.image.url(:thumb),
+                                      alt: "ANG ang Aneka Global Niaga - #{@portfolio.title}"  %></li>
                   <% end %>
                 </ul>
               </div>

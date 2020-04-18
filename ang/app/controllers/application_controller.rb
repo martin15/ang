@@ -26,5 +26,6 @@ class ApplicationController < ActionController::Base
 
     def load_categories
       @categories = Category.all.includes([:brands])
+      @meta_description = "Aneka Global Niaga - ANG - Distributor Konsultan Jual Laptop Proyektor Komputer Accecories AIO All in One Bandung"
     end
 end

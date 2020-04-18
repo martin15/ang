@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :set_meta_description
 
   def index
     @categories = Category.all.includes([:brands])
@@ -62,5 +63,11 @@ class ProductsController < ApplicationController
       @brands = @category.brands
     end
   end
+
+  private
+
+    def set_meta_description
+      @meta_description_custom = " - produk #{@brand.try(:name)} - #{@category.try(:name)}"
+    end
 
 end

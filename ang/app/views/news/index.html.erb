@@ -24,7 +24,8 @@
           <div class="row">
             <div class=col-sm-6>
               <%= link_to news_detail_path(@main_news.permalink) do %>
-                <%= image_tag @main_news.banner.url(:large), :class => "img img-fluid" %>
+                <%= image_tag @main_news.banner.url(:large), :class => "img img-fluid",
+                              alt: "ANG ang Aneka Global Niaga - #{@main_news.title}" %>
               <% end %>
             </div>
             <div class=col-sm-6>

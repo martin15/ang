@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <% if @meta_description.present? %>
-      <meta name="description" content="<%= @meta_description %>">
-    <% end %>
+    <meta name="title" content = "<%= ApplicationController::BRAND_NAME %>">
+    <% @meta_description = (@meta_description + @meta_description_custom) if @meta_description_custom.present? %>
+    <meta name="description" content="<%= @meta_description %>">
     <meta name="author" content="">
     <title><%= @meta_title ? @meta_title : ApplicationController::BRAND_NAME %></title>
     <%= csrf_meta_tags %>
@@ -39,7 +39,7 @@
 
     <nav class="d-none d-md-block navbar navbar-expand-lg navbar-light bg-light <%= manage_menu %> main">
       <div class="container">
-        <%= link_to (image_tag "logo.png", class: "img-fluid"), root_path, class: "navbar-brand" %>
+        <%= link_to (image_tag "logo.png", class: "img-fluid", alt: "ANG ang Aneka Global Niaga"), root_path, class: "navbar-brand" %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -128,10 +128,11 @@
                 <div class="col-12 col-md-4 footer-block" style="padding-top:35px;">
                     <div class="footer-widget widget_text">
                         <div class="footer-logo">
-                          <%= image_tag "small_logo.png", class: "img-fluid", style: "height: 75px;margin-bottom:25px;" %>
+                          <%= image_tag "small_logo.png", class: "img-fluid", style: "height: 75px;margin-bottom:25px;",
+                                        alt: "ANG ang Aneka Global Niaga" %>
                         </div>
-                        <p>Continually matrix cross functional opportunities whereas ethical information. Compellingly
-                            streamline enabled human capital before resource-leveling internal or "organic".</p>
+                        <p>PT. Aneka Niaga Global – IT Solutions adalah perusahaan yang menjual produk – produk IT yang
+                           diperlukan untuk usaha dan perkantoran.</p>
                     </div>
                 </div>
 
@@ -173,7 +174,7 @@
     <div class="ct-menu-mobile">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-          <%= link_to (image_tag "logo.png", class: "img-fluid"), root_path, class: "navbar-brand" %>
+          <%= link_to (image_tag "logo.png", class: "img-fluid", alt: "ANG ang Aneka Global Niaga"), root_path, class: "navbar-brand" %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMobile" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
