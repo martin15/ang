@@ -57,7 +57,8 @@
                 <div class="col-12 col-md-4 news">
                   <div class="col-12 news-short-detail">
                     <%= link_to news_detail_path(news.permalink) do %>
-                      <%= image_tag news.banner.url(:medium), :class => "img img-fluid" %>
+                      <%= image_tag news.banner.url(:medium), :class => "img img-fluid",
+                              alt: "ANG ang Aneka Global Niaga - #{news.title}" %>
                     <% end %>
                     <div class="col-12 title"><%= link_to news.title, news_detail_path(news.permalink) %></div>
                     <div class="col-12 news-info">
