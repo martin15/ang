@@ -5,6 +5,10 @@ class ProductsController < ApplicationController
     @categories = Category.all.includes([:brands])
     @category = Category.find_by_permalink(params[:category_permalink])
     @brand = Brand.find_by_permalink(params[:brand_permalink])
+    if @category.nil? || @brand.nil?
+      redirect_to root_path
+      return
+    end
     @products = Product.joins(:brand, :category).
                         where("brands.permalink = '#{params[:brand_permalink]}' and
                                categories.permalink = '#{params[:category_permalink]}'").
